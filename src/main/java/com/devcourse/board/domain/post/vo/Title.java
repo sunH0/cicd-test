@@ -4,26 +4,25 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Transient;
 import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Embeddable
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@EqualsAndHashCode
 public class Title {
-    @Transient
-    private static final String TITLE_REGEX = "^.{1,25}$";
 
     @Column(name = "post_title")
     private String title;
 
     public Title(String title) {
-        validate(title);
+        if(!validate(title)) ;
+            // throw new InvalidArgumentException(ErrorMessage.INVALID_POST_TITLE);
         this.title = title;
     }
 
-    public void validate(String title) {
-//        if (!Pattern.matches(TITLE_REGEX, title)) {
-//            throw new InvalidArgumentException(ErrorMessage.INVALID_POST_TITLE);
-//        }
+    public static boolean validate(String title) {
+        return title.length() > 0 && title.length() <= 25;
     }
 
     public String getTitle() {

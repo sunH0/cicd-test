@@ -1,29 +1,29 @@
 package com.devcourse.board.domain.user.vo;
 
+import java.util.regex.Pattern;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Transient;
 import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Embeddable
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@EqualsAndHashCode
 public class Email {
-    @Transient
-    private static final String EMAIL_VALIDATOR = "^[_a-zA-Z0-9-\\+]+(\\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9]+)*(\\.[a-zA-Z]{2,3})$";
 
-    @Column(name = "member_email", nullable = false)
+    @Column(name = "user_email", nullable = false, unique = true)
     private String email;
 
     public Email(String email) {
-        validate(email);
+        if (!validate(email)) ;
+            // throw new InvalidArgumentException(ErrorMessage.INVALID_USER_EMAIL);
         this.email = email;
     }
 
-    public void validate(String email) {
-//        if (!Pattern.matches(EMAIL_VALIDATOR, email)) {
-//            throw new InvalidArgumentException(ErrorMessage.INVALID_MEMBER_EMAIL);
-//        }
+    public static boolean validate(String email) {
+        return Pattern.matches("\\b[\\w\\.-]+@[\\w\\.-]+\\.\\w{2,4}\\b", email);
     }
 
     public String getEmail() {

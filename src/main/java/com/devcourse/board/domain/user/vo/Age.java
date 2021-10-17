@@ -1,41 +1,33 @@
 package com.devcourse.board.domain.user.vo;
 
+import java.util.regex.Pattern;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Transient;
 import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Embeddable
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@EqualsAndHashCode
 public class Age {
-    @Transient
-    private static final String AGE_VALIDATOR = "^100|[1-9]?\\d$";
 
-    @Column(name = "member_age", nullable = false)
+    @Column(name = "user_age", nullable = false)
     private int age;
 
     public Age(String age) {
-        validate(age);
-        this.age = parsingAge(age);
+        if (!validate(age)) ;
+            // throw new InvalidArgumentException(ErrorMessage.INVALID_USER_AGE);
+        this.age = Integer.parseInt(age);
     }
 
-    private void validate(String age) {
-//        if (!Pattern.matches(AGE_VALIDATOR, age)) {
-//            throw new InvalidArgumentException(ErrorMessage.INVALID_MEMBER_AGE);
-//        }
-    }
-
-    private int parsingAge(String age) {
-        return Integer.parseInt(age);
+    public static boolean validate(String age) {
+        return Pattern.matches("^100|[1-9]?\\d$", age);
     }
 
     public int getAge() {
         return age;
     }
 
-    @Override
-    public String toString() {
-        return String.valueOf(age);
-    }
 }

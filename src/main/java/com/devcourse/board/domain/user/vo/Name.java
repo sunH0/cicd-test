@@ -1,29 +1,29 @@
 package com.devcourse.board.domain.user.vo;
 
+import java.util.regex.Pattern;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Transient;
 import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Embeddable
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@EqualsAndHashCode
 public class Name {
-    @Transient
-    private static final String NAME_VALIDATOR = "^[가-힣]{2,10}$";
 
-    @Column(name = "member_name", nullable = false)
+    @Column(name = "user_name", nullable = false)
     private String name;
 
     public Name(String name) {
-        validate(name);
+        if (!validate(name)) ;
+            // throw new InvalidArgumentException(ErrorMessage.INVALID_USER_NAME);
         this.name = name;
     }
 
-    public void validate(String name) {
-//        if (!Pattern.matches(NAME_VALIDATOR, name)) {
-//            throw new InvalidArgumentException(ErrorMessage.INVALID_MEMBER_NAME);
-//        }
+    public static boolean validate(String name) {
+        return Pattern.matches("^[가-힣]{2,5}$", name);
     }
 
     public String getName() {

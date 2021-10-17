@@ -4,26 +4,25 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Transient;
 import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Embeddable
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@EqualsAndHashCode
 public class Content {
-    @Transient
-    private static final String CONTENT_REGEX = "^.{5,2000}$";
 
     @Column(name = "post_content")
     private String content;
 
     public Content(String content) {
-        validate(content);
+        if(!validate(content));
+            // throw new InvalidArgumentException(ErrorMessage.INVALID_POST_CONTENT);
         this.content = content;
     }
 
-    public void validate(String content) {
-//        if (!Pattern.matches(CONTENT_REGEX, content)) {
-//            throw new InvalidArgumentException(ErrorMessage.INVALID_POST_CONTENT);
-//        }
+    public static boolean validate(String content) {
+        return content.length() > 0 && content.length() <= 2500;
     }
 
     public String getContent() {
