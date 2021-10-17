@@ -15,4 +15,6 @@ import lombok.ToString;
 @AllArgsConstructor
 public class PostUpdateDto {
     private Long id;
+    private String title;
+    private String content;
 }
