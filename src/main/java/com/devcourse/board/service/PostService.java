@@ -2,6 +2,8 @@ package com.devcourse.board.service;
 
 import com.devcourse.board.converter.PostConverter;
 import com.devcourse.board.domain.post.Post;
+import com.devcourse.board.domain.post.vo.Content;
+import com.devcourse.board.domain.post.vo.Title;
 import com.devcourse.board.domain.user.User;
 import com.devcourse.board.dto.post.PostCreateRequest;
 import com.devcourse.board.dto.post.PostResponse;
@@ -28,9 +30,9 @@ public class PostService {
         User user = userRepository.findById(dto.getUserId())
             .orElseThrow(() -> new NotFoundException("게시글을 작성할 유저를 찾을 수 없습니다."));
         Post post = postConverter.convertToPost(dto, user);
-        postRepository.save(post);
         post.setInfo(user.getId());
-        user.addPost(post);
+        post.setUser(user);
+        postRepository.save(post);
         return post.getId();
     }
 
@@ -48,19 +50,16 @@ public class PostService {
     public Page<PostResponse> findAllByUser(Long userId, Pageable pageable) throws NotFoundException {
         User user = userRepository.findById(userId)
             .orElseThrow(() -> new NotFoundException("유저를 찾을 수 없습니다."));
-        return postRepository.findAllByUserOrderByCreatedAt(user, pageable)
+        return postRepository.findAllByUser(user, pageable)
             .map(postConverter::convertToPostResponse);
     }
 
     @Transactional
     public PostResponse update(PostUpdateRequest dto) throws NotFoundException {
-        Post foundPost = postRepository.findById(dto.getId())
+        Post post = postRepository.findById(dto.getId())
             .orElseThrow(() -> new NotFoundException("업데이트할 게시글을 찾을 수 없습니다."));
-        Post post = postConverter.convertToPost(dto);
-        // Todo : 연관관계 메서드에 의해 user의 posts에 같은 아이디를 가진 새로운 post가 추가되는데
-        //      - 아래의 save에 의해 post가 업데이트 되면 posts에 저장된 고아객체는 어떻게 됨?
-        post.setUser(foundPost.getUser());
-        postRepository.save(post);
+        post.update(new Title(dto.getTitle()), new Content(dto.getContent()));
+        postRepository.save(post); // Todo : save 해야함 ? 변경감지 확인하기
         return postConverter.convertToPostResponse(post);
     }
 

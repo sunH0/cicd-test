@@ -43,8 +43,14 @@ public class User extends BaseEntity {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Post> posts = new ArrayList<>();
 
+    public void update(Name name, Email email, Age age, Hobby hobby) {
+        this.name = name;
+        this.email = email;
+        this.age = age;
+        this.hobby = hobby;
+    }
+
     public void addPost(Post post) {
         post.setUser(this);
     }
-
 }

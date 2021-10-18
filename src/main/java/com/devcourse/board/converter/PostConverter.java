@@ -6,7 +6,6 @@ import com.devcourse.board.domain.post.vo.Title;
 import com.devcourse.board.domain.user.User;
 import com.devcourse.board.dto.post.PostCreateRequest;
 import com.devcourse.board.dto.post.PostResponse;
-import com.devcourse.board.dto.post.PostUpdateRequest;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -17,14 +16,6 @@ public class PostConverter {
             .title(new Title(dto.getTitle()))
             .content(new Content(dto.getContent()))
             .user(user)
-            .build();
-    }
-
-    public Post convertToPost(PostUpdateRequest dto) {
-        return Post.builder()
-            .id(dto.getId())
-            .title(new Title(dto.getTitle()))
-            .content(new Content(dto.getContent()))
             .build();
     }
 

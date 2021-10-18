@@ -17,5 +17,4 @@ public class PostCreateRequest {
     private Long userId; // Todo : Post생성시 User 어떻게 set하는게 좋은 방법?
     private String title;
     private String content;
-
 }

@@ -2,6 +2,10 @@ package com.devcourse.board.service;
 
 import com.devcourse.board.converter.UserConverter;
 import com.devcourse.board.domain.user.User;
+import com.devcourse.board.domain.user.vo.Age;
+import com.devcourse.board.domain.user.vo.Email;
+import com.devcourse.board.domain.user.vo.Hobby;
+import com.devcourse.board.domain.user.vo.Name;
 import com.devcourse.board.dto.user.UserCreateRequest;
 import com.devcourse.board.dto.user.UserResponse;
 import com.devcourse.board.dto.user.UserUpdateRequest;
@@ -41,11 +45,10 @@ public class UserService {
 
     @Transactional
     public UserResponse update(UserUpdateRequest dto) throws NotFoundException {
-        // Todo : Update할때 연관관계에 있는 posts필드는 어떻게 set하는게 좋은 방법?
-        User foundUser = userRepository.findById(dto.getId())
+        User user = userRepository.findById(dto.getId())
             .orElseThrow(() -> new NotFoundException("업데이트할 유저를 찾을 수 없습니다."));
-        User user = userConverter.convertToUser(dto, foundUser.getPosts());
-        userRepository.save(user);
+        user.update(new Name(dto.getName()), new Email(dto.getEmail()), new Age(dto.getAge()), new Hobby(dto.getHobby()));
+        userRepository.save(user); // Todo : save 해야함 ? 변경감지 확인하기
         return userConverter.convertToUserResponse(user);
     }
 

@@ -1,4 +1,4 @@
-package com.devcourse.board.common;
+package com.devcourse.board.controller;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;

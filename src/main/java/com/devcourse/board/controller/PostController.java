@@ -1,6 +1,5 @@
 package com.devcourse.board.controller;
 
-import com.devcourse.board.common.ApiResponse;
 import com.devcourse.board.dto.post.PostCreateRequest;
 import com.devcourse.board.dto.post.PostResponse;
 import com.devcourse.board.dto.post.PostUpdateRequest;
@@ -23,7 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class PostController {
     private final PostService postService;
-
+    
+    // Todo : ResponseEntity 찾아보기
     @ExceptionHandler
     private ApiResponse<String> exceptionHandle(Exception exception) {
         return ApiResponse.fail(HttpStatus.INTERNAL_SERVER_ERROR.value(), exception.getMessage());

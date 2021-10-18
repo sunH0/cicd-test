@@ -5,7 +5,6 @@ import com.devcourse.board.domain.post.vo.Content;
 import com.devcourse.board.domain.post.vo.Title;
 import com.devcourse.board.domain.user.User;
 import java.util.Objects;
-import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -45,4 +44,8 @@ public class Post extends BaseEntity {
         user.getPosts().add(this);
     }
 
+    public void update(Title title, Content content) {
+        this.title = title;
+        this.content = content;
+    }
 }

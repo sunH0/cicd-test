@@ -1,6 +1,5 @@
 package com.devcourse.board.converter;
 
-import com.devcourse.board.domain.post.Post;
 import com.devcourse.board.domain.user.User;
 import com.devcourse.board.domain.user.vo.Age;
 import com.devcourse.board.domain.user.vo.Email;
@@ -8,8 +7,6 @@ import com.devcourse.board.domain.user.vo.Hobby;
 import com.devcourse.board.domain.user.vo.Name;
 import com.devcourse.board.dto.user.UserCreateRequest;
 import com.devcourse.board.dto.user.UserResponse;
-import com.devcourse.board.dto.user.UserUpdateRequest;
-import java.util.List;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -22,17 +19,6 @@ public class UserConverter {
             .email(new Email(dto.getEmail()))
             .age(new Age(dto.getAge()))
             .hobby(new Hobby(dto.getHobby()))
-            .build();
-    }
-
-    public User convertToUser(UserUpdateRequest dto, List<Post> posts) { // 오버로딩
-        return User.builder()
-            .id(dto.getId())
-            .name(new Name(dto.getName()))
-            .email(new Email(dto.getEmail()))
-            .age(new Age(dto.getAge()))
-            .hobby(new Hobby(dto.getHobby()))
-            .posts(posts)
             .build();
     }
 

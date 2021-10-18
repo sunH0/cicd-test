@@ -1,6 +1,5 @@
 package com.devcourse.board.controller;
 
-import com.devcourse.board.common.ApiResponse;
 import com.devcourse.board.dto.user.UserCreateRequest;
 import com.devcourse.board.dto.user.UserResponse;
 import com.devcourse.board.dto.user.UserUpdateRequest;
@@ -24,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
     private final UserService userService;
 
+    // Todo : ResponseEntity 찾아보기
     @ExceptionHandler
     private ApiResponse<String> exceptionHandle(Exception exception) {
         return ApiResponse.fail(HttpStatus.INTERNAL_SERVER_ERROR.value(), exception.getMessage());
