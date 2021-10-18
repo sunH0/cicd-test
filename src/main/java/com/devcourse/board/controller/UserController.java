@@ -56,7 +56,7 @@ public class UserController {
     }
 
     @DeleteMapping("/api/v1/users/{id}")
-    public ApiResponse<Long> delete(@PathVariable Long id) throws NotFoundException {
+    public ApiResponse<Long> deleteUser(@PathVariable Long id) throws NotFoundException {
         return ApiResponse.ok(userService.delete(id));
     }
 
