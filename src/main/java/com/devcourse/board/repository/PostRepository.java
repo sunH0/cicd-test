@@ -9,6 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface PostRepository extends JpaRepository<Post, Long> {
     // 메소드 쿼리
     Page<Post> findAll(Pageable pageable);
-    Page<Post> findAllByUserOrderByCreatedAt(User user, Pageable pageable);
+    Page<Post> findAllByUser(User user, Pageable pageable);
 
 }
