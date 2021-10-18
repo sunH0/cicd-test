@@ -13,6 +13,9 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDto {
-    private Long id;
+public class UserCreateRequest {
+    private String name;
+    private String email;
+    private String age;
+    private String hobby;
 }

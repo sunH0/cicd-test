@@ -16,8 +16,7 @@ public class Content {
     private String content;
 
     public Content(String content) {
-        if(!validate(content));
-            // throw new InvalidArgumentException(ErrorMessage.INVALID_POST_CONTENT);
+        if(!validate(content)) throw new IllegalArgumentException("The number of Content characters exceeded the limit.");
         this.content = content;
     }
 

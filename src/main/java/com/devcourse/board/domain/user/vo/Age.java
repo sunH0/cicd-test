@@ -14,20 +14,19 @@ import lombok.NoArgsConstructor;
 public class Age {
 
     @Column(name = "user_age", nullable = false)
-    private int age;
+    private String age;
 
     public Age(String age) {
-        if (!validate(age)) ;
-            // throw new InvalidArgumentException(ErrorMessage.INVALID_USER_AGE);
-        this.age = Integer.parseInt(age);
+        if (!validate(age)) throw new IllegalArgumentException("Invalid Age number");
+        this.age = age;
     }
 
     public static boolean validate(String age) {
         return Pattern.matches("^100|[1-9]?\\d$", age);
     }
 
-    public int getAge() {
-        return age;
+    public String getAge() {
+        return String.valueOf(age);
     }
 
 }

@@ -13,8 +13,9 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PostUpdateDto {
+public class PostResponse {
     private Long id;
     private String title;
     private String content;
+
 }

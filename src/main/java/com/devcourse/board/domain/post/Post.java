@@ -5,6 +5,7 @@ import com.devcourse.board.domain.post.vo.Content;
 import com.devcourse.board.domain.post.vo.Title;
 import com.devcourse.board.domain.user.User;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,7 +37,7 @@ public class Post extends BaseEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public void setUser(User user) {
+    public void setUser(User user) { // 연관관계 편의 메서드
         if (Objects.nonNull(this.user)) {
             this.user.getPosts().remove(this);
         }

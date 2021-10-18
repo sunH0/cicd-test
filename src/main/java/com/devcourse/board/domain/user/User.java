@@ -38,7 +38,8 @@ public class User extends BaseEntity {
     private Age age;
     @Embedded
     private Hobby hobby;
-
+    
+    // Note : 유저 삭제시 게시글까지 삭제
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Post> posts = new ArrayList<>();
 

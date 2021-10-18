@@ -1,4 +1,4 @@
-package com.devcourse.board.dto.user;
+package com.devcourse.board.dto.post;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,6 +13,9 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserCreateDto {
-    private Long id;
+public class PostCreateRequest {
+    private Long userId; // Todo : Post생성시 User 어떻게 set하는게 좋은 방법?
+    private String title;
+    private String content;
+
 }

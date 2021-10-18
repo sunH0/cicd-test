@@ -11,7 +11,12 @@ import lombok.Setter;
 @MappedSuperclass
 public class BaseEntity {
     @Column(name = "Created_by")
-    private String createdBy;
+    private Long createdBy;
     @Column(name = "Created_at", columnDefinition = "TIMESTAMP")
     private LocalDateTime createdAt;
+
+    public void setInfo(Long id) {
+        createdBy = id;
+        createdAt = LocalDateTime.now();
+    }
 }

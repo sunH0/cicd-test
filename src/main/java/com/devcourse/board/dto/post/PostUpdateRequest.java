@@ -1,6 +1,5 @@
 package com.devcourse.board.dto.post;
 
-import com.devcourse.board.domain.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,11 +13,8 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PostCreateDto {
+public class PostUpdateRequest {
     private Long id;
     private String title;
     private String content;
-
-    private User user;
-
 }

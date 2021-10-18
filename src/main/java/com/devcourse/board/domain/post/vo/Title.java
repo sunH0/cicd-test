@@ -16,8 +16,7 @@ public class Title {
     private String title;
 
     public Title(String title) {
-        if(!validate(title)) ;
-            // throw new InvalidArgumentException(ErrorMessage.INVALID_POST_TITLE);
+        if(!validate(title)) throw new IllegalArgumentException("The number of Title characters exceeded the limit.");
         this.title = title;
     }
 

@@ -13,6 +13,10 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserUpdateDto {
+public class UserResponse {
     private Long id;
+    private String name;
+    private String email;
+    private String age;
+    private String hobby;
 }

@@ -1,9 +1,7 @@
 package com.devcourse.board.domain.user.vo;
 
-import java.util.regex.Pattern;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.Transient;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -17,8 +15,7 @@ public class Hobby {
     private String hobby;
 
     public Hobby(String hobby) {
-        if (!validate(hobby)) ;
-            // throw new InvalidArgumentException(ErrorMessage.INVALID_USER_HOBBY);
+        if (!validate(hobby)) throw new IllegalArgumentException("The number of Hobby characters exceeded the limit.");
         this.hobby = hobby;
     }
 

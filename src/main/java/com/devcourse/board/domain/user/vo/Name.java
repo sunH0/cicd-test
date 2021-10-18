@@ -17,8 +17,7 @@ public class Name {
     private String name;
 
     public Name(String name) {
-        if (!validate(name)) ;
-            // throw new InvalidArgumentException(ErrorMessage.INVALID_USER_NAME);
+        if (!validate(name)) throw new IllegalArgumentException("Name should be korean.");
         this.name = name;
     }
 
