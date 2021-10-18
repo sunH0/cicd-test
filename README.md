@@ -1,10 +1,11 @@
 # 🪧 Project Board
 
 
-##  프로젝트 목적
+##  프로젝트 목적 
 * Spring Data Jpa 활용
 * MockMvc를 이용한 API 테스트
-* Rest-Docs를 API 문서화 
+* Rest-Docs를 이용한 API 문서화 
+
 
 ## ✔️ 기술 스택
 * Spring Data Jpa
