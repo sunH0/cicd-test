@@ -1,25 +1,16 @@
 spring:
   datasource:
     driver-class-name: org.h2.Driver
-    url: jdbc:h2:tcp://localhost/~/test; # DB_CLOSE_ON_EXIT=FALSE
+    url: jdbc:h2:tcp://localhost/~/test; #DB_CLOSE_ON_EXIT=FALSE
     username: sa
     password:
-
   jpa:
     open-in-view: false
     hibernate:
-      dialect:
       ddl-auto: create
-
+    show-sql: true
     properties:
-      hibernate:
-        show-sql: true
-        format_sql: true
-
-logging:
-  level:
-    org.hibernate.SQL: debug
-#    org.hibernate.type: trace
+      hibernate.format_sql: true
 
 server:
   servlet:
@@ -27,3 +18,8 @@ server:
       charset: UTF-8
       enabled: true
       force: true
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+#    org.hibernate.type: trace
