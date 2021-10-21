@@ -53,3 +53,4 @@
 <br>
 
 ### ✔️ REST-DOCS를 이용한 API 문서화
+* 위치 : /src/main/resources/documentation/index.html
