@@ -41,7 +41,7 @@ public class User extends BaseEntity {
     
     // Note : 유저 삭제시 게시글까지 삭제
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Post> posts = new ArrayList<>();
+    private List<Post> posts;
 
     public void update(Name name, Email email, Age age, Hobby hobby) {
         this.name = name;
