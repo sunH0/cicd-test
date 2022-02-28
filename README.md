@@ -54,3 +54,19 @@
 
 ### ✔️ REST-DOCS를 이용한 API 문서화
 * 위치 : /src/main/resources/documentation/index.html
+
+## Commit Message 작성 규칙
+```bash
+1- ⭐ feat : 새로운 기능에 대한 커밋
+2- ⚙️ chore : 그 외 자잘한 수정에 대한 커밋
+3- 🐞 fix : 버그 수정에 대한 커밋
+4- 📖 docs : 문서 수정에 대한 커밋
+5- 💅 style : 코드 스타일 혹은 포맷 등에 관한 커밋
+6- ♻️ refactor : 코드 리팩토링에 대한 커밋
+7- 🚦 test : 테스트 코드 수정에 대한 커밋
+8- 🚀 CI : CI/CD
+9- 🔖 Release : 제품 출시
+10- 🎉 init : 최초 커밋
+11- 🛠️ Config : 환경설정에 대한 커밋
+12- 🦔 Revert : 리버트
+```
