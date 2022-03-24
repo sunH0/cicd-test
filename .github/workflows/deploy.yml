@@ -55,11 +55,3 @@ jobs:
           docker build -t $REPO .
           docker tag $REPO:latest $NAME/$REPO:latest
           docker push $NAME/$REPO:latest
-      - name: build and release to DockerHub
-        env:
-          NAME: hpwh4457 # DockerHub 계정 명
-          REPO: test #  DockerHub 레포 이름
-        run: |
-          docker build -t $REPO .
-          docker tag $REPO:latest $NAME/$REPO:latest
-          docker push $NAME/$REPO:latest
