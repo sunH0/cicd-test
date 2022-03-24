@@ -45,3 +45,21 @@ jobs:
         with:
           username: ${{secrets.SH0_DOCKERHUB_USERNAME}}
           password: ${{secrets.SH0_DOCKERHUB_TOKEN}}
+          
+      # 도커 이미지 빌드 및 push   
+      - name: build and release to DockerHub
+        env:
+          NAME: sunh072010 # DockerHub 계정 명
+          REPO: deploy-test #  DockerHub 레포 이름
+        run: |
+          docker build -t $REPO .
+          docker tag $REPO:latest $NAME/$REPO:latest
+          docker push $NAME/$REPO:latest
+      - name: build and release to DockerHub
+        env:
+          NAME: hpwh4457 # DockerHub 계정 명
+          REPO: test #  DockerHub 레포 이름
+        run: |
+          docker build -t $REPO .
+          docker tag $REPO:latest $NAME/$REPO:latest
+          docker push $NAME/$REPO:latest
